@@ -48,12 +48,14 @@ void Chose::changer_etat_pourchasse(){
 	etat_ = pourchasse_;
 }
 
+Etat_Chose Chose::get_etat(){
+	return etat_;
+}
+
 
 // ------------------------------------------------------------------------------------------------- Méthodes d'interaction
 
-void Chose::recevoir_degat(int d){
-	pdv_ -= d;
-}
+void Chose::recevoir_degat(int d){}
 
 void Chose::attaquer(Chose &cible){}
 

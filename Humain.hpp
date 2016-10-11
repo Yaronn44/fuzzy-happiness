@@ -17,7 +17,6 @@ private:
 
 	Inventaire inventaire_;
 	Arme *arme_;
-	//TypeH type_;
 
 public:
 		// Constructeur / Destructeur
@@ -33,7 +32,7 @@ public:
 	void manger(Aliment a);
 
 		// Getteur / Setteur
-	Arme get_arme();
+	Arme get_arme() const;
 	void set_arme(Arme& a);
 	
 	void set_pdv(int pdv);

@@ -45,3 +45,9 @@ bool Inventaire::obj_appartient(Stuff o){
 	}
 	return false;
 }
+
+void Inventaire::liste_obj(){
+	for (unsigned int i = 0; i < inventaire_.size(); ++i){
+		cout << inventaire_[i].get_nom() << endl;
+	}
+}

@@ -28,12 +28,12 @@ Humain::~Humain(){
 
 // ---------------------------------------------------------------------------- Méthodes d'interaction
 
-void Humain::attaquer(Chose &cible) const{
-	cible.recevoir_degat(attaque_);
-}
-
 void Humain::recevoir_degat(int d){
 	pdv_ -= d;
+}
+
+void Humain::attaquer(Chose &cible) const{
+	cible.recevoir_degat(attaque_);
 }
 
 void Humain::mouvement(){}
@@ -50,7 +50,7 @@ void Humain::manger(Aliment a){
 
 // ---------------------------------------------------------------------------- Getteur / Setteur
 
-Arme Humain::get_arme(){
+Arme Humain::get_arme() const{
 	return *arme_;
 }
 

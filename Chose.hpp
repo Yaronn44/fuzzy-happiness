@@ -38,12 +38,13 @@ public:
 	void changer_etat_repos();
 	void changer_etat_explore();
 	void changer_etat_pourchasse();
+	Etat_Chose get_etat();
 
 		// Méthode débug
 	void seTapperLAffiche();
 	
 		// Méthodes d'interaction
-	void recevoir_degat(int d);
+	virtual void recevoir_degat(int d);
 	virtual void attaquer(Chose &cible);
 	virtual void mouvement();
 	virtual void prendre_objet(Stuff obj);

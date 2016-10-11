@@ -14,7 +14,7 @@ class Zombie : public Chose{
 
 private:
 
-	TypeZ type_;
+	Inventaire inventaire_;
 
 public:
 
@@ -23,7 +23,13 @@ public:
 	~Zombie();
 
 		// Méthodes d'interaction
-	void attaquer(Chose &cible);
+	void recevoir_degat(int d);
+	void attaquer(Chose &cible) const;
 	void mouvement();
+	void prendre_objet(Stuff obj);
 	void rentrer_bat();
+	void manger(Aliment a);
+
+		// Getteur / Setteur
+	void set_pdv(int pdv);
 };

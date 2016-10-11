@@ -26,6 +26,7 @@ public:
 	void ajouter_objet(Stuff o);
 	void retirer_objet(Stuff o);	
 	bool obj_appartient(Stuff o);
+	void liste_obj();
 };
 
 
