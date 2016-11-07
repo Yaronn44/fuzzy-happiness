@@ -1,11 +1,8 @@
-/** 
- * @file Etat_chose.cpp
- * @author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
- * @date 06/10/2016
- * @brief EtatChose.cpp, contient également les différents états
- *  
-**/
-
+//! \file Etat_Chose.cpp
+//! \author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
+//! \date 06/10/2016
+//! \brief Permet l'implémentation du pattern States, contient également les différents états
+ 
 #include <iostream>
 #include "EtatChose.hpp"
 #include "Chose.hpp"
@@ -27,10 +24,9 @@ void Etat_Chose::seTapperLAffiche(){}
 
 //------------------------------------------------------------------------------ Fuite
 
-Etat_Fuite::Etat_Fuite(Chose *c) : chose_(c){}
+Etat_Fuite::Etat_Fuite(Chose c) : chose_(c){}
 
-Etat_Fuite::~Etat_Fuite(){}
-
+Etat_Fuite::~Etat_Fuite(){
 void Etat_Fuite::fuire(){}
 
 void Etat_Fuite::en_securite(){
@@ -48,7 +44,7 @@ void Etat_Fuite::seTapperLAffiche(){
 
 //------------------------------------------------------------------------------ Repos
 
-Etat_Repos::Etat_Repos(Chose *c) : chose_(c){}
+Etat_Repos::Etat_Repos(Chose c) : chose_(c){}
 
 Etat_Repos::~Etat_Repos(){}
 
@@ -71,7 +67,7 @@ void Etat_Repos::seTapperLAffiche(){
 
 //------------------------------------------------------------------------------ Explore
 
-Etat_Explore::Etat_Explore(Chose *c) : chose_(c){}
+Etat_Explore::Etat_Explore(Chose c) : chose_(c){}
 
 Etat_Explore::~Etat_Explore(){}
 
@@ -96,7 +92,7 @@ void Etat_Explore::seTapperLAffiche(){
 
 //------------------------------------------------------------------------------ Pourchase
 
-Etat_Pourchasse::Etat_Pourchasse(Chose *c) : chose_(c){}
+Etat_Pourchasse::Etat_Pourchasse(Chose c) : chose_(c){}
 
 Etat_Pourchasse::~Etat_Pourchasse(){}
 

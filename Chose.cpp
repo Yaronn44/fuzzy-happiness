@@ -22,9 +22,7 @@ Chose::Chose() : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0){
 	etat_ = repos_;
 }
 
-Chose::~Chose(){
-
-}
+Chose::~Chose(){}
 
 // ----------------------------------------------------------------------------------- Changement d'Etats
 
