@@ -14,22 +14,25 @@ using namespace std;
 
 //-------------------------------------------------------------------------------------------------- Constructeur / Destructeur
 
-Chose::Chose(int pos) : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0), x_(5), y_(5), direction_(0), posCel_(pos){
+Chose::Chose() : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0), direction_(0), x_(5), y_(5){
 
-    fuite_ = Etat_Fuite(this);
-	repos_ = Etat_Repos(this);
-	explore_ = Etat_Explore(this);
-	pourchasse_ = Etat_Pourchasse(this);
-	etat_ = repos_;
+    /*fuite_ = make_shared<Etat_Fuite>(this);
+	repos_ = make_shared<Etat_Repos>(this);
+	explore_ = make_shared<Etat_Explore>(this);
+	pourchasse_ = make_shared<Etat_Pourchasse>(this);
+	etat_ = repos_;*/
 }
+
+Chose::Chose(int pdv, int a, int v) : pdv_(pdv), attaque_(a), vitesse_(v), fatigue_(0), direction_(0), x_(5), y_(5){}
 
 Chose::~Chose(){}
 
 //-------------------------------------------------------------------------------------------------- Changement d'Etats
 
+/*
 void Chose::changer_etat_fuite(){
 
-	etat_ = fuite_;
+	etat_= fuite_;
 }
 
 void Chose::changer_etat_repos(){
@@ -49,11 +52,15 @@ void Chose::changer_etat_pourchasse(){
 
 void Chose::fuire(){}
 
-void Chose::en_securite(){}
+void Chose::en_securite(){
+
+}
 
 void Chose::explore(){}
 
 void Chose::pourchasser(){}
+
+*/
 
 
 //-------------------------------------------------------------------------------------------------- Méthodes d'interaction
@@ -62,11 +69,93 @@ void Chose::recevoir_degat(int d){}
 
 void Chose::attaquer(Chose &cible) const{}
 
-void Chose::mouvement(){}
+int Chose::mouvement(){
 
-void Chose::prendre_objet(Stuff obj){}
+	int resX = (direction_%wMonde_) - (pos_%wMonde_);
+	int resY = (direction_/wMonde_) - (pos_/wMonde_);
 
-//void Chose::rentrer_bat(){}
+	if (resX == 0){
+		if (resY == 0){
+	 		// La chose ne bouge pas
+	 	}
+	 	else if(resY > 0){
+	 		if (y_ + vitesse_ > 10){
+	 			y_ = (y_ + vitesse_)%10;
+	 			pos_ += wMonde_;
+	 		}
+	 		else
+	 			y_ += vitesse_;
+	 	}
+	 	else{
+	 		if (y_ - vitesse_ < 0){
+	 			y_ = 10 + (y_ - vitesse_);
+	 			pos_ -= wMonde_;
+	 		}
+	 		else
+	 			y_ -= vitesse_;
+	 	}
+	}
+	else if(resX > 0){
+
+		if (x_ + vitesse_ > 10){
+			x_ = (x_ + vitesse_)%10;
+			++pos_;
+		}
+		else
+			x_ += vitesse_;
+
+		if (resY == 0){
+
+	 	}
+	 	else if(resY > 0){
+	 		if (y_ + vitesse_ > 10){
+	 			y_ = (y_ + vitesse_)%10;
+	 			pos_ += wMonde_;
+	 		}
+	 		else
+	 			y_ += vitesse_;
+	 	}
+	 	else{
+	 		if (y_ - vitesse_ < 0){
+	 			y_ = 10 + (y_ - vitesse_);
+	 			pos_ -= wMonde_;
+	 		}
+	 		else
+	 			y_ -= vitesse_;
+	 	}
+	}
+	else{
+		if (x_ - vitesse_ < 0){
+			x_ = 10 + (x_ - vitesse_);
+			--pos_;
+		}
+		else
+			x_ -= vitesse_;
+
+		if (resY == 0){
+	 		
+	 	}
+	 	else if(resY > 0){
+	 		if (y_ + vitesse_ > 10){
+	 			y_ = (y_ + vitesse_)%10;
+	 			pos_ += wMonde_;
+	 		}
+	 		else
+	 			y_ += vitesse_;
+	 	}
+	 	else{
+	 		if (y_ - vitesse_ < 0){
+	 			y_ = 10 + (y_ - vitesse_);
+	 			pos_ -= wMonde_;
+	 		}
+	 		else
+	 			y_ -= vitesse_;
+	 	}
+	}
+	return pos_;
+}
+
+//void Chose::prendre_objet(Stuff obj){}
 
 void Chose::manger(Aliment a){}
 
@@ -89,16 +178,20 @@ int Chose::get_fatigue() const{
 	return fatigue_;
 }
 
-Etat_Chose Chose::get_etat() const{
+/*shared_ptr<Etat_Chose> Chose::get_etat() const{
 	return etat_;
+}*/
+
+int Chose::get_pos() const{
+	return pos_;
 }
 
 int Chose::get_dir() const{
 	return direction_;
 }
 
-int Chose::get_pos() const{
-	return posCel_;
+int Chose::get_wMonde() const{
+	return wMonde_;
 }
 
 
@@ -115,23 +208,32 @@ void Chose::set_vitesse(int vitesse){
 }
 
 void Chose::set_fatigue(int fatigue){
-	fatigue_ = fatigue;
+	if (fatigue_ + fatigue < 0){
+		fatigue_ = 0
+	}
+	else{
+		fatigue_ += fatigue;
+	}
+}
+
+void Chose::set_pos(int p){
+	pos_ = p;
 }
 
 void Chose::set_direction(int d){
 	direction_ = d;
 }
 
-void Chose::set_pos(int p){
-	posCel_ = p;
+void Chose::set_wMonde(int w){
+	wMonde_ = w;
 }
+
 
 //-------------------------------------------------------------------------------------------------- Debug
 
 void Chose::seTapperLAffiche(){
 
-	cout << "Bonjou' mon g'and maît'e !";
-	etat_.seTapperLAffiche();
+	cout << "Bonjou' mon g'and maît'e ! Je ne suis qu'une simple chose";
 }
 
 

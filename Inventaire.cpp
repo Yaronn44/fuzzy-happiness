@@ -57,3 +57,7 @@ void Inventaire::liste_obj(){
 	}
 }
 
+void Inventaire::nb_objets(){
+	return inventaire_.size();
+}
+

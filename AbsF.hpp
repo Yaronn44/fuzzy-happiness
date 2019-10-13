@@ -32,7 +32,6 @@ public:
 
     //! \brief Créer la liste des loots
     virtual std::unique_ptr<TableLoot> listeLoot() = 0;
-    //virtual TableLoot listeLoot() = 0;
 
     //! \brief Retourne un tableau d'entier qui sera le squelette du biome
     //! \return un tableau d'entier
@@ -65,7 +64,6 @@ public:
 
     //! \brief Créer la liste des loots
     virtual std::unique_ptr<TableLoot> listeLoot();
-    //virtual TableLoot listeLoot();
 
     //! \brief Retourne un tableau d'entier qui sera le squelette du biome
     //! \return un tableau d'entier
@@ -108,7 +106,6 @@ public:
 
     //! \brief Créer la liste des loots
     virtual std::unique_ptr<TableLoot> listeLoot();
-    //virtual TableLoot listeLoot();
 
     //! \brief Retourne un tableau d'entier qui sera le squelette du biome
     //! \return un tableau d'entier
@@ -142,7 +139,6 @@ public:
 
     //! \brief Créer la liste des loots
     virtual std::unique_ptr<TableLoot> listeLoot();
-    //virtual TableLoot listeLoot();
 
     //! \brief Retourne un tableau d'entier qui sera le squelette du biome
     //! \return un tableau d'entier
@@ -164,7 +160,6 @@ public:
 
     //! \brief Créer la liste des loots
     virtual std::unique_ptr<TableLoot> listeLoot();
-    //virtual TableLoot listeLoot();
 
     //! \brief Retourne un tableau d'entier qui sera le squelette du biome
     //! \return un tableau d'entier

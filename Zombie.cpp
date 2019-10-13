@@ -15,7 +15,7 @@ using namespace std;
 
 //-------------------------------------------------------------------------------------------------- Constructeur / Destructeur
 
-Zombie::Zombie(int p) : Chose(p)/*, inventaire_(Inventaire(1))*/{}
+Zombie::Zombie() : Chose(130, 10, 5)/*, inventaire_(Inventaire(1))*/{}
 
 Zombie::~Zombie(){}
 
@@ -42,23 +42,26 @@ void Zombie::manger(Aliment a){
 
 }
 
+
+
+/*
 void Zombie::fuire(){}
 
 void Zombie::en_securite(){
-	etat_.en_securite();
+	etat_->en_securite();
 }
 
 void Zombie::explore(){
-	etat_.explore();
+	etat_->explore();
 }
 
 void Zombie::pourchasser(){
-	etat_.pourchasser();
+	etat_->pourchasser();
 }
+*/
+
 //-------------------------------------------------------------------------------------------------- Getteur / Setteur
 
 void Zombie::set_pdv(int pdv){
 	pdv_ = (pdv > maxPdvH) ? maxPdvH : pdv;
 }
-
-

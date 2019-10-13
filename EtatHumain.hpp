@@ -1,57 +1,59 @@
-//! \file Etat_Chose.hpp
+//! \file Etat_Humain.hpp
 //! \author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
 //! \date 06/10/2016
-//! \brief Header de EtatChose.cpp
+//! \brief Header de EtatHumain.cpp
  
-#ifndef ETATCHOSE_H
-#define ETATCHOSE_H
+#ifndef ETATHUMAIN_H
+#define ETATHUMAIN_H
 
  // Lib.
 #include <iostream>
 
-class Chose;
+class Humain;
 
 
 //------------------------------------------------------------------------------ Général
-//! \class Etat_Chose
+//! \class Etat_Humain
 //! \brief Classe "abstraite" permettant l'implémentation du pattern States
 
-class Etat_Chose{
+class Etat_Humain{
 private:
 
 public:
 
 	//! \brief Constructeur
-	Etat_Chose();
+	Etat_Humain();
 
 	//! \brief Destructeur
-	virtual ~Etat_Chose();
+	virtual ~Etat_Humain();
 
 	//! \brief Méthode de changement d'étât 
 	virtual void fuire();
 	//! \brief Méthode de changement d'étât 
 	virtual void en_securite();
 	//! \brief Méthode de changement d'étât 
-	virtual void explore();
+	virtual void explore(int dir);
 	//! \brief Méthode de changement d'étât 
-	virtual void pourchasser();
+	virtual void pourchasser(int dir);
+	//! \brief Méthode de déplacement des entitées
+
 	virtual void seTapperLAffiche();
 };
 
 
 //-------------------------------------------------------------------------------------------------- Fuite
 //! \class Etat_Fuite
-//! \brief Classe implémentant la classe Etat_Chose
+//! \brief Classe implémentant la classe Etat_Humain
 
-class Etat_Fuite : public Etat_Chose{
+class Etat_Fuite : public Etat_Humain{
 
 private:
-	Chose *chose_;
+	Humain *chose_;
 
 public:
 
 	//! \brief Constructeur
-	Etat_Fuite(Chose *c);
+	Etat_Fuite(Humain *c);
 
 	//! \brief Destructeur
 	~Etat_Fuite();
@@ -61,9 +63,10 @@ public:
 	//! \brief Méthode de changement d'étât 
 	void en_securite();
 	//! \brief Méthode de changement d'étât 
-	void explore();
+	void explore(int dir);
 	//! \brief Méthode de changement d'étât 
-	void pourchasser();
+	void pourchasser(int dir);
+
 	void seTapperLAffiche();
 
 };
@@ -71,17 +74,17 @@ public:
 
 //-------------------------------------------------------------------------------------------------- Repos
 //! \class Etat_Repos
-//! \brief Classe implémentant la classe Etat_Chose
+//! \brief Classe implémentant la classe Etat_Humain
 
-class Etat_Repos : public Etat_Chose{
+class Etat_Repos : public Etat_Humain{
 
 private:
-	Chose *chose_;
+	Humain *chose_;
 
 public:
 
 	//! \brief Constructeur
-	Etat_Repos(Chose *c);
+	Etat_Repos(Humain *c);
 
 	//! \brief Destructeur
 	~Etat_Repos();
@@ -91,9 +94,10 @@ public:
 	//! \brief Méthode de changement d'étât 
 	void en_securite();
 	//! \brief Méthode de changement d'étât 
-	void explore();
+	void explore(int dir);
 	//! \brief Méthode de changement d'étât 
-	void pourchasser();
+	void pourchasser(int dir);
+
 	void seTapperLAffiche();
 
 };
@@ -101,17 +105,17 @@ public:
 
 //-------------------------------------------------------------------------------------------------- Explore
 //! \class Etat_Explore
-//! \brief Classe implémentant la classe Etat_Chose
+//! \brief Classe implémentant la classe Etat_Humain
 
-class Etat_Explore : public Etat_Chose{
+class Etat_Explore : public Etat_Humain{
 
 private:
-	Chose *chose_;
+	Humain *chose_;
 
 public:
 
 	//! \brief Constructeur
-	Etat_Explore(Chose *c);
+	Etat_Explore(Humain *c);
 
 	//! \brief Destructeur
 	~Etat_Explore();
@@ -121,9 +125,10 @@ public:
 	//! \brief Méthode de changement d'étât 
 	void en_securite();
 	//! \brief Méthode de changement d'étât 
-	void explore();
+	void explore(int dir);
 	//! \brief Méthode de changement d'étât 
-	void pourchasser();
+	void pourchasser(int dir);
+
 	void seTapperLAffiche();
 
 };
@@ -131,17 +136,17 @@ public:
 
 //-------------------------------------------------------------------------------------------------- Pourchasse
 //! \class Etat_Pourchasse
-//! \brief Classe implémentant la classe Etat_Chose
+//! \brief Classe implémentant la classe Etat_Humain
 
-class Etat_Pourchasse : public Etat_Chose{
+class Etat_Pourchasse : public Etat_Humain{
 
 private:
-	Chose *chose_;
+	Humain *chose_;
 
 public:
 
 	//! \brief Constructeur
-	Etat_Pourchasse(Chose *c);
+	Etat_Pourchasse(Humain *c);
 
 	//! \brief Destructeur
 	~Etat_Pourchasse();
@@ -151,10 +156,11 @@ public:
 	//! \brief Méthode de changement d'étât 
 	void en_securite();
 	//! \brief Méthode de changement d'étât 
-	void explore();
+	void explore(int dir);
 	//! \brief Méthode de changement d'étât 
-	void pourchasser();
+	void pourchasser(int dir);
+
 	void seTapperLAffiche();
 };
 
-#endif // ETATCHOSE_H
+#endif // ETATHUMAIN_H

@@ -17,8 +17,6 @@ using namespace std;
 
 int nbRand(int N){
 
-//N += 10;
-
 	static int first = 0;
 
 	if(first == 0){
@@ -30,3 +28,4 @@ int nbRand(int N){
 	
 	return randomValue;
 }
+

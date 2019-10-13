@@ -9,12 +9,13 @@
 
 #include "Chose.hpp"
 #include "Sujet.hpp"
+#include "Constante.hpp"
 
-//class Observer;
+class Etat_Humain;
 
 //! \class Humain
 //! \brief Sous classe représentant des choses peuplant le monde
-class Humain : public Chose, public SujetObs {
+class Humain : public Chose, public SujetObs{
 
 private:
 
@@ -24,15 +25,45 @@ private:
 	int contamination_;
 
 
+	std::shared_ptr<Etat_Humain> fuite_;
+    std::shared_ptr<Etat_Humain> repos_;
+    std::shared_ptr<Etat_Humain> explore_;
+    std::shared_ptr<Etat_Humain> pourchasse_;
+    std::shared_ptr<Etat_Humain> etat_;
+
+
 //	Observer *obs_;
 
 public:
 	
 	//! \brief Constructeur
-	Humain(int p);
+	Humain();
 
 	//! \brief Destructeur
 	~Humain();
+
+
+
+	//! Méthodes Pattern State
+    void changer_etat_fuite();
+    //! Méthodes Pattern State
+    void changer_etat_repos();
+    //! Méthodes Pattern State
+    void changer_etat_explore(int dir);
+    //! Méthodes Pattern State
+    void changer_etat_pourchasse(int dir);
+
+    //! \brief Méthode de changement d'étât 
+    virtual void fuire();
+    //! \brief Méthode de changement d'étât 
+    virtual void en_securite();
+    //! \brief Méthode de changement d'étât 
+    virtual void explore(int dir);
+    //! \brief Méthode de changement d'étât 
+    virtual void pourchasser(int dir);
+
+
+
 
 	// Méthodes d'interaction
 
@@ -44,9 +75,6 @@ public:
     //! \param cible : la chose attaqué
 	void attaquer(Chose &cible) const;
 
-    //! \brief La chose se déplace
-	void mouvement();
-
 	//! \brief La chose ramasse un objet et l'ajoute à son inventaire
     //! \param obj : l'objet ramassé
 	void prendre_objet(Stuff obj);
@@ -55,23 +83,22 @@ public:
 	//! \param a : l'aliment ingéré 
 	void manger(Aliment a);
 
-	//! \brief Méthode de changement d'étât 
-	virtual void fuire();
-	//! \brief Méthode de changement d'étât 
-	virtual void en_securite();
-	//! \brief Méthode de changement d'étât 
-	virtual void explore();
-	//! \brief Méthode de changement d'étât 
-	virtual void pourchasser();
+
 
 	// Getteur / Setteur
-	Arme get_arme() const;
 	void set_arme(Arme& a);
 	bool be_zombie();
 	int get_contamination();
 	
 	void set_pdv(int pdv);
+	Arme get_arme() const;
 	std::string get_nom_arme();
+
+	bool test_fuite();
+	bool test_repos();
+	bool test_pourchasse();
+	bool test_explore();
+
 };
 
 

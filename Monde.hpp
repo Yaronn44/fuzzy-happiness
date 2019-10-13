@@ -5,6 +5,57 @@
 
 #ifndef MONDE_H
 #define MONDE_H
+
+ // Lib.
+#include <iostream>
+#include <vector>
+#include <memory>
+ // Proj.
+#include "Biome.hpp"
+
+typedef std::vector<std::unique_ptr<Biome>> vectPtrBiome;
+
+class Monde{
+
+private:
+
+    //vectPtrBiome world_;
+    std::vector<Cellule> monde_;
+    
+    int w_, h_;
+    int age_, pas_;
+
+public:
+
+        // Constructeur / Destructeur
+    Monde();
+    Monde(int, int);
+    ~Monde();
+
+        // Getters / Setters
+    int get_age();
+    int get_taille();
+
+
+        // Méthodes d'affichage
+    void afficher();
+
+    int densite(int );
+
+    void afficherInv(int );
+
+    int direction_zombie();
+
+    void vieillir();
+
+    void mouvement_choses();
+
+    void action_humains();
+
+    void action_zombies();
+
+};
+
 /*
  // Lib.
 #include <iostream>
@@ -22,7 +73,7 @@ private:
     vectPtrBiome world_;
     
     int w_, h_;
-    int age_;
+    int age_
 
 public:
 
@@ -44,11 +95,11 @@ public:
 
     void afficherInv();
 
-    void direction_zombie();
+
 
 
     void vieillir();
 
-};
-*/
+};*/
+
 #endif // MONDE_H

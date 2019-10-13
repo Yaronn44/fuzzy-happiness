@@ -18,5 +18,7 @@ enum V_FACT{ VPLAINE = 0, VMONTAGNE = 1};
 const int NB_B_CAMPAGNE = 3;
 enum C_FACT{ CPLAINE = 0, CMONTAGNE = 1, CAUTRE = 2};
 
+const int H_CEL = 5;
+
 
 #endif // CONSTANTE_H

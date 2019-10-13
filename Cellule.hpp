@@ -11,6 +11,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <string>
 
  // Proj.
 #include "Humain.hpp"
@@ -27,6 +28,8 @@ private:
 	int bruit_;
     char n_;
     int pos_;
+    int wMonde_;
+    std::string sprite_[5];
 
     Inventaire inv_;
 
@@ -40,7 +43,7 @@ public:
     Cellule();
 
     //! \brief Constructeur
-    Cellule(int, int);
+    Cellule(int);
     
     //! \brief Destructeur
     ~Cellule();
@@ -48,24 +51,36 @@ public:
     	// Setters
     void actualiser_bruit();
     void actualiser_dir_zomb(int d);
+    
     void set_bruit(int);
     void add_arme(int x);
     void add_vehicule(int x);
     void add_nourriture(int x);
     void add_metal(int x);
+    void set_pos(int p);
+    void set_wMonde(int w);
 
     	// Getters
-    int densiteH();
-    int densiteZ();
+    int densiteH() const;
+    int densiteZ() const;
+    int get_bruit() const;
+    int get_pos() const;
+    int get_wMonde() const;
+    std::shared_ptr<Humain> get_humain(int ind) const;
+    std::shared_ptr<Zombie> get_zombie(int ind) const;
 
-    int get_bruit();
+    vectPtrHumain get_liste_humain() const;
+    vectPtrZombie get_liste_zombie() const;
 
-    vectPtrHumain getListeHumain();
-    vectPtrZombie getListeZombie();
+    Inventaire get_inv();
+    int get_taille_inv();
 
         // Méthodes d'affichage
     void afficher();
+    void afficher(int);
     void afficherInv();
+
+    void genererSprite(int);
 
 };
 

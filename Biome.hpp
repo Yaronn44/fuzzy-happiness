@@ -40,12 +40,19 @@ public:
     void afficherInv(int);
 
     vectPtrHumain getHumains(int indiceCel);
+    vectPtrZombie getZombies(int indiceCel);
+
+    int densiteH(int h, int w);
+    int densiteZ(int h, int w);
 
     std::vector<Cellule> getListeCell();
     std::vector<Cellule> ligne(int);
     Cellule getCellule(int x);
     Cellule getCellule(int x, int y);
     int densite(int h, int w);
+
 };
 
+
 #endif // BIOME_H
+

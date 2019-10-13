@@ -61,7 +61,7 @@ std::unique_ptr<TableLoot> VilleMontF::listeLoot(){
    //TableLoot 
     std::unique_ptr<TableLoot> table = std::make_unique<TableLoot>();
 
-    table->set_arme( Loot(0, 6, 0, 9, 8));
+    table->set_arme( Loot(1, 2, 3, 4, 5));
     table->set_vehicule( Loot(0, 3, 0, 4, 3));
     table->set_nourriture( Loot(9, 4, 3, 5, 9));
     table->set_metal( Loot(5, 9, 2, 9, 9));

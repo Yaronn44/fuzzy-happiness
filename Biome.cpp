@@ -37,7 +37,7 @@ Biome::Biome(){
     for(int i = 0; i < B_::HEIGHT*B_::WIDTH; ++i){
 
         int j = structure_.at(i);
-        biome_.push_back(Cellule(j, i));
+        biome_.push_back(Cellule(j));
 
         int x = 2 + nbRand( tableLoot_->getLoot(0).coeff(j));
         biome_.at(i).add_arme(x);
@@ -84,12 +84,20 @@ void Biome::afficherInv(int i){
     biome_.at(i).afficherInv();
 }
 
-int Biome::densite(int h, int w){
-    return biome_.at(h*B_::WIDTH + w).densiteH();
+int Biome::densiteZ(int h, int w){
+    return biome_.at(h*B_::WIDTH + w).densiteZ();
+}
+
+int Biome::densiteH(int h, int w){
+    return biome_.at(h*B_::WIDTH + w).densiteZ();
 }
 
 vectPtrHumain Biome::getHumains(int indiceCel){
-    return biome_.at(indiceCel).getListeHumain();
+    return biome_.at(indiceCel).get_liste_humain();
+}
+
+vectPtrZombie Biome::getZombies(int indiceCel){
+    return biome_.at(indiceCel).get_liste_zombie();
 }
 
 Cellule Biome::getCellule(int x){
@@ -107,8 +115,7 @@ vector<Cellule> Biome::getListeCell(){
 vector<Cellule> Biome::ligne(int l){
     vector<Cellule> v = vector<Cellule>();
 
-    for (int i = 0; i < B_::WIDTH; ++i)
-    {
+    for (int i = 0; i < B_::WIDTH; ++i){
         v.push_back(biome_.at(l * B_::WIDTH + i));
     }
 

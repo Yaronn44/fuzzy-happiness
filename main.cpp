@@ -5,7 +5,7 @@
 
 //#include "Stuff.hpp"
 //#include "Inventaire.hpp"
-#include "MondeA.hpp"
+#include "Monde.hpp"
 //#include "Constante.hpp"
 //#include "UniquePointer.hpp"
 //#include "EtatChose.hpp"
@@ -22,13 +22,13 @@ int main(){
 
 
 	Monde test(2,2);
-	for (int i = 0; i < 10; ++i)
+/*	for (int i = 0; i < 10; ++i)
 	{
 		cout << "Ligne " << i << endl << endl;
 		test.vieillir();
-		test.afficher();
-	};
-
+*/		test.afficher();
+//	};
+/*
 	cout << endl;
 
 	test.afficherInv(0);
@@ -53,7 +53,7 @@ int main(){
 
 	obs.reinit();
 	obs.actualiser();
-
+*/
 
     return 0;
 }

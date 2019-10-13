@@ -1,34 +1,35 @@
-//! \file Etat_Chose.cpp
+//! \file Etat_Humain.cpp
 //! \author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
 //! \date 06/10/2016
 //! \brief Permet l'implémentation du pattern States, contient également les différents états
 
  // Header implémenté
-#include "EtatChose.hpp"
+#include "EtatHumain.hpp"
 
  // Lib.
 #include <iostream>
  // Proj.
-#include "Chose.hpp"
+#include "Humain.hpp"
 
 using namespace std;
 
 
 //-------------------------------------------------------------------------------------------------- Général
 
-Etat_Chose::Etat_Chose(){}
+Etat_Humain::Etat_Humain(){}
 
-Etat_Chose::~Etat_Chose(){}
-void Etat_Chose::fuire(){}
-void Etat_Chose::en_securite(){}
-void Etat_Chose::explore(){}
-void Etat_Chose::pourchasser(){}
-void Etat_Chose::seTapperLAffiche(){}
+Etat_Humain::~Etat_Humain(){}
+void Etat_Humain::fuire(){}
+void Etat_Humain::en_securite(){}
+void Etat_Humain::explore(int dir){}
+void Etat_Humain::pourchasser(int dir){}
+
+void Etat_Humain::seTapperLAffiche(){}
 
 
 //-------------------------------------------------------------------------------------------------- Fuite
 
-Etat_Fuite::Etat_Fuite(Chose *c) : chose_(c){}
+Etat_Fuite::Etat_Fuite(Humain *c) : chose_(c){}
 
 Etat_Fuite::~Etat_Fuite(){}
 
@@ -38,9 +39,10 @@ void Etat_Fuite::en_securite(){
 	chose_->changer_etat_repos();
 }
 
-void Etat_Fuite::explore(){}
+void Etat_Fuite::explore(int dir){}
 
-void Etat_Fuite::pourchasser(){}
+void Etat_Fuite::pourchasser(int dir){}
+
 
 void Etat_Fuite::seTapperLAffiche(){
 	cout << "MAMENE je me fais victime boloss frangin ! :o " << endl;
@@ -49,7 +51,7 @@ void Etat_Fuite::seTapperLAffiche(){
 
 //-------------------------------------------------------------------------------------------------- Repos
 
-Etat_Repos::Etat_Repos(Chose *c) : chose_(c){}
+Etat_Repos::Etat_Repos(Humain *c) : chose_(c){}
 
 Etat_Repos::~Etat_Repos(){}
 
@@ -59,11 +61,11 @@ void Etat_Repos::fuire(){
 
 void Etat_Repos::en_securite(){}
 
-void Etat_Repos::explore(){
-	chose_->changer_etat_explore();
+void Etat_Repos::explore(int dir){
+	chose_->changer_etat_explore(dir);
 }
 
-void Etat_Repos::pourchasser(){}
+void Etat_Repos::pourchasser(int dir){}
 
 void Etat_Repos::seTapperLAffiche(){
 	cout << "Je suis dans mon jacuzzi, t'es dans ta jalousie ! " << endl;
@@ -72,7 +74,7 @@ void Etat_Repos::seTapperLAffiche(){
 
 //-------------------------------------------------------------------------------------------------- Explore
 
-Etat_Explore::Etat_Explore(Chose *c) : chose_(c){}
+Etat_Explore::Etat_Explore(Humain *c) : chose_(c){}
 
 Etat_Explore::~Etat_Explore(){}
 
@@ -84,11 +86,12 @@ void Etat_Explore::en_securite(){
 	chose_->changer_etat_repos();
 }
 
-void Etat_Explore::explore(){}
+void Etat_Explore::explore(int dir){}
 
-void Etat_Explore::pourchasser(){
-	chose_->changer_etat_pourchasse();
+void Etat_Explore::pourchasser(int dir){
+	chose_->changer_etat_pourchasse(dir);
 }
+
 
 void Etat_Explore::seTapperLAffiche(){
 	cout << "Il va faire tout noir ! TAGGLE " << endl;
@@ -97,7 +100,7 @@ void Etat_Explore::seTapperLAffiche(){
 
 //-------------------------------------------------------------------------------------------------- Pourchasse
 
-Etat_Pourchasse::Etat_Pourchasse(Chose *c) : chose_(c){}
+Etat_Pourchasse::Etat_Pourchasse(Humain *c) : chose_(c){}
 
 Etat_Pourchasse::~Etat_Pourchasse(){}
 
@@ -107,11 +110,12 @@ void Etat_Pourchasse::fuire(){
 
 void Etat_Pourchasse::en_securite(){}
 
-void Etat_Pourchasse::explore(){
-	chose_->changer_etat_explore();
+void Etat_Pourchasse::explore(int dir){
+	chose_->changer_etat_explore(dir);
 }
 
-void Etat_Pourchasse::pourchasser(){}
+void Etat_Pourchasse::pourchasser(int dir){}
+
 
 void Etat_Pourchasse::seTapperLAffiche(){
 	cout << "PHILIPPE § JE SAIS OU TU TE CACHES §§§§§§§§ " << endl;

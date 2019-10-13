@@ -21,7 +21,7 @@ private:
 public:
 
 	 //! Constructeur 
-	Zombie(int p);
+	Zombie();
 	  //! Destructeur
 	~Zombie();
 
@@ -35,13 +35,12 @@ public:
 	//! \param cible : la chose attaqué
 	void attaquer(Chose &cible) const;
 
-	//void prendre_objet(Stuff obj);
 
 	//! \brief La chose mange un aliment afin de se soigner
 	//! \param a : l'aliment ingéré 
 	void manger(Aliment a);
 
-
+/*
 	//! \brief Méthode de changement d'étât 
 	virtual void fuire();
 	//! \brief Méthode de changement d'étât 
@@ -50,10 +49,11 @@ public:
 	virtual void explore();
 	//! \brief Méthode de changement d'étât 
 	virtual void pourchasser();
-
+*/
 
 	// Getteur / Setteur
 	void set_pdv(int pdv);
+
 };
 
 #endif // ZOMBIE_H

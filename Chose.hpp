@@ -10,7 +10,6 @@
 #include <iostream>
 #include <memory>
  // Proj.
-#include "EtatChose.hpp"
 #include "Inventaire.hpp"
 #include "Stuff.hpp"
 
@@ -30,26 +29,30 @@ protected:
     int vitesse_;
     int fatigue_;
     int direction_;
-    int posCel_;
 
+    int wMonde_;
+    int pos_;
     int x_; int y_;
 
-    //! Attributs d'étât (Pattern Stats)
-    std::shared_ptr<Etat_Chose> fuite_;
+    //! Attributs d'étât (Pattern State)
+/*  std::shared_ptr<Etat_Chose> fuite_;
     std::shared_ptr<Etat_Chose> repos_;
     std::shared_ptr<Etat_Chose> explore_;
     std::shared_ptr<Etat_Chose> pourchasse_;
     std::shared_ptr<Etat_Chose> etat_;
+*/
 
 public:
 
     //! \brief Constructeur
-    Chose(int pos);
+    Chose();
+
+    Chose(int pdv, int a, int v);
 
     //! \brief Destructeur
     virtual ~Chose();
 
-    //! Méthodes Pattern State
+/*    //! Méthodes Pattern State
     void changer_etat_fuite();
     //! Méthodes Pattern State
     void changer_etat_repos();
@@ -66,9 +69,9 @@ public:
     virtual void explore();
     //! \brief Méthode de changement d'étât 
     virtual void pourchasser();
-
+*/
     //! Méthode débug
-    void seTapperLAffiche();
+    virtual void seTapperLAffiche();
 
     //! Méthodes d'interaction
 
@@ -81,11 +84,11 @@ public:
     virtual void attaquer(Chose &cible) const;
 
     //! \brief La chose se déplace
-    virtual void mouvement();
+    int mouvement();
 
     //! \brief La chose ramasse un objet et l'ajoute à son inventaire
     //! \param obj : l'objet ramassé
-    virtual void prendre_objet(Stuff obj);
+ //   virtual void prendre_objet(Stuff obj);
 
 
     //! \brief La chose mange un aliment afin de se soigner
@@ -94,16 +97,15 @@ public:
 
     //void afficher(int x, int y);
 
-
-
     // Getteur
     int get_pdv() const;
     int get_attaque() const;
     int get_vitesse() const;
     int get_fatigue() const;
-    std::shared_ptr<Etat_Chose> get_etat() const;
-    int get_dir() const;
     int get_pos() const;
+    int get_dir() const;
+    int get_wMonde() const;
+    //std::shared_ptr<Etat_Chose> get_etat() const;
 
     // Setteur
     void set_pdv(int pdv);
@@ -111,8 +113,9 @@ public:
     void set_vitesse(int vitesse);
     void set_fatigue(int fatigue);
 
-    void set_direction(int d);
     void set_pos(int p);
+    void set_direction(int d);
+    void set_wMonde(int w);
 };
 
 

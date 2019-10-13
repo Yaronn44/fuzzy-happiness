@@ -49,6 +49,8 @@ public:
 
     //! \brief Ecrit dans le terminal la liste des objets présent dans l'inventaire
     void liste_obj();
+
+    int nb_objets();
 };
 
 #endif // INVENTAIRE_H

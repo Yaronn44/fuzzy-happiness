@@ -32,42 +32,4 @@ public:
 
 };
 
-
-/*
-class SujetHumain : public SujetObs{
-
-private:
-	ObserverHumain obs_;
-	Humain donnee_;
-
-public:
-	SujetHumain();
-	~SujetHumain();
-
-	void enregister_obs(ObserverHumain o);
-	void supprimer_obs();
-	void notifier_obs();
-	Humain get_donnee();
-	void set_donnee(Humain d);
-};
-
-
-class SujetCellule : public SujetObs{
-
-private:
-	ObserverCellule obs_;
-	Cellule donnee_;
-
-public:
-	SujetCellule();
-	~SujetCellule();
-
-	void enregister_obs(ObserverCellule o);
-	void supprimer_obs();
-	void notifier_obs();
-	Cellule get_donnee();
-	void set_donnee(Cellule d);
-};
-//*/
-
-#endif // SUJET_H
+#endif //SUJET_H
