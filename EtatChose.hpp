@@ -3,13 +3,11 @@
 //! \date 06/10/2016
 //! \brief Header de EtatChose.cpp
  
-
 #ifndef ETATCHOSE_H
 #define ETATCHOSE_H
 
-#include <QApplication>
+ // Lib.
 #include <iostream>
-#include <memory>
 
 class Chose;
 
@@ -23,152 +21,155 @@ private:
 
 public:
 
-    //! \brief Constructeur
-    Etat_Chose();
+	//! \brief Constructeur
+	Etat_Chose();
 
-    //! \brief Destructeur
-    virtual ~Etat_Chose();
+	//! \brief Destructeur
+	virtual ~Etat_Chose();
 
-    //! \brief Méthode de changement d'étât 
-    virtual void fuire();
+	//! \brief Méthode de changement d'étât 
+	virtual void fuire();
+	//! \brief Méthode de changement d'étât 
+	virtual void en_securite();
+	//! \brief Méthode de changement d'étât 
+	virtual void explore();
+	//! \brief Méthode de changement d'étât 
+	virtual void pourchasser();
+	//! \brief Méthode de déplacement des entitées
+	void mouvement();
 
-    //! \brief Méthode de changement d'étât 
-    virtual void en_securite();
-
-    //! \brief Méthode de changement d'étât 
-    virtual void explore();
-
-    //! \brief Méthode de changement d'étât 
-    virtual void pourchasser();
-
-    virtual void seTapperLAffiche();
-signals:
-
-public slots:
+	virtual void seTapperLAffiche();
 };
 
 
-//------------------------------------------------------------------------------ Fuite
+//-------------------------------------------------------------------------------------------------- Fuite
 //! \class Etat_Fuite
 //! \brief Classe implémentant la classe Etat_Chose
 
 class Etat_Fuite : public Etat_Chose{
 
 private:
-    std::unique_ptr<Chose> chose_;
+	Chose *chose_;
 
 public:
 
-    //! \brief Constructeur
-    //! \param c : Chose pour laquelle l'état est appliqué 
-    Etat_Fuite(Chose c);
+	//! \brief Constructeur
+	Etat_Fuite(Chose *c);
 
-    //! \brief Destructeur
-    ~Etat_Fuite();
+	//! \brief Destructeur
+	~Etat_Fuite();
+	
+	//! \brief Méthode de changement d'étât 
+	void fuire();
+	//! \brief Méthode de changement d'étât 
+	void en_securite();
+	//! \brief Méthode de changement d'étât 
+	void explore();
+	//! \brief Méthode de changement d'étât 
+	void pourchasser();
+	//! \brief Méthode de déplacement des entitées
+	void mouvement();
 
-    void fuire();
-    void en_securite();
-    void explore();
-    void pourchasser();
-    void seTapperLAffiche();
+	void seTapperLAffiche();
 
-signals:
-
-public slots:
 };
 
 
-//------------------------------------------------------------------------------ Repos
+//-------------------------------------------------------------------------------------------------- Repos
 //! \class Etat_Repos
 //! \brief Classe implémentant la classe Etat_Chose
 
 class Etat_Repos : public Etat_Chose{
 
 private:
-    std::unique_ptr<Chose> chose_;
+	Chose *chose_;
 
 public:
 
-    
-    //! \brief Constructeur
-    //! \param c : Chose pour laquelle l'état est appliqué 
-    Etat_Repos(Chose c);
+	//! \brief Constructeur
+	Etat_Repos(Chose *c);
 
-    //! \brief Destructeur
-    ~Etat_Repos();
+	//! \brief Destructeur
+	~Etat_Repos();
 
-    void fuire();
-    void en_securite();
-    void explore();
-    void pourchasser();
-    void seTapperLAffiche();
+	//! \brief Méthode de changement d'étât 
+	void fuire();
+	//! \brief Méthode de changement d'étât 
+	void en_securite();
+	//! \brief Méthode de changement d'étât 
+	void explore();
+	//! \brief Méthode de changement d'étât 
+	void pourchasser();
+	//! \brief Méthode de déplacement des entitées
+	void mouvement();
 
-signals:
+	void seTapperLAffiche();
 
-public slots:
 };
 
 
-//------------------------------------------------------------------------------ Explore
+//-------------------------------------------------------------------------------------------------- Explore
 //! \class Etat_Explore
 //! \brief Classe implémentant la classe Etat_Chose
 
 class Etat_Explore : public Etat_Chose{
 
 private:
-    std::unique_ptr<Chose> chose_;
+	Chose *chose_;
 
 public:
 
-    
-    //! \brief Constructeur
-    //! \param c : Chose pour laquelle l'état est appliqué 
-    Etat_Explore(Chose c);
+	//! \brief Constructeur
+	Etat_Explore(Chose *c);
 
-    //! \brief Destructeur
-    ~Etat_Explore();
+	//! \brief Destructeur
+	~Etat_Explore();
 
-    void fuire();
-    void en_securite();
-    void explore();
-    void pourchasser();
-    void seTapperLAffiche();
+	//! \brief Méthode de changement d'étât 
+	void fuire();
+	//! \brief Méthode de changement d'étât 
+	void en_securite();
+	//! \brief Méthode de changement d'étât 
+	void explore();
+	//! \brief Méthode de changement d'étât 
+	void pourchasser();
+	//! \brief Méthode de déplacement des entitées
+	void mouvement();
 
-signals:
+	void seTapperLAffiche();
 
-public slots:
 };
 
 
-//------------------------------------------------------------------------------ Pourchase
+//-------------------------------------------------------------------------------------------------- Pourchasse
 //! \class Etat_Pourchasse
 //! \brief Classe implémentant la classe Etat_Chose
 
 class Etat_Pourchasse : public Etat_Chose{
 
 private:
-    std::unique_ptr<Chose> chose_;
+	Chose *chose_;
 
 public:
 
-    
-    //! \brief Constructeur
-    //! \param c : Chose pour laquelle l'état est appliqué 
-    Etat_Pourchasse(Chose c);
+	//! \brief Constructeur
+	Etat_Pourchasse(Chose *c);
 
-    //! \brief Destructeur
-    ~Etat_Pourchasse();
+	//! \brief Destructeur
+	~Etat_Pourchasse();
 
-    void fuire();
-    void en_securite();
-    void explore();
-    void pourchasser();
-    void seTapperLAffiche();
+	//! \brief Méthode de changement d'étât 
+	void fuire();
+	//! \brief Méthode de changement d'étât 
+	void en_securite();
+	//! \brief Méthode de changement d'étât 
+	void explore();
+	//! \brief Méthode de changement d'étât 
+	void pourchasser();
+	//! \brief Méthode de déplacement des entitées
+	void mouvement();
 
-signals:
-
-public slots:
+	void seTapperLAffiche();
 };
-
 
 #endif // ETATCHOSE_H

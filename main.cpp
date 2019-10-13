@@ -1,39 +1,60 @@
+
 #include <iostream>
-#include "EtatChose.hpp"
-#include "Chose.hpp"
+#include <memory>
+
+
+//#include "Stuff.hpp"
+//#include "Inventaire.hpp"
+#include "MondeA.hpp"
+//#include "Constante.hpp"
+//#include "UniquePointer.hpp"
+//#include "EtatChose.hpp"
+//#include "Chose.hpp"
+
+
+
 #include "Humain.hpp"
-#include "Stuff.hpp"
-#include "Inventaire.hpp"
+#include "Observer.hpp"
 
 using namespace std;
 
-int main(int argc, char const *argv[]){
+int main(){
 
-	Humain matheux;
-	Humain papy;
 
-	Arme couteau("un poireaux", 1000, 45);
+	Monde test(2,2);
+	for (int i = 0; i < 10; ++i)
+	{
+		cout << "Ligne " << i << endl << endl;
+		test.vieillir();
+		test.afficher();
+	};
 
-	matheux.prendre_objet(couteau);
-	matheux.set_arme(couteau);
-	cout << "Matheux n'a pour arme qu' " << matheux.get_arme().get_nom() << endl;
-	matheux.attaquer(papy);
+	cout << endl;
 
-	cout << "Matheux frappe Papy dans la machoire avec " << matheux.get_arme().get_nom() << ". Il reste " << papy.get_pdv() << " point de vie à Papy" << endl;
+	test.afficherInv(0);
 
-	Aliment merde("Merde", 1, 5);
+	cout << endl;
 
-	papy.prendre_objet(merde);
-	papy.manger(merde);
+	Humain homme = Humain();
+	Arme pistolet = Arme("Revolver R5", 5, 100);
+	ObserverHumain obs = ObserverHumain(&homme);
 
-	cout << "Papy mange de la merde, cela lui rend " << merde.get_soin() << " pdv. Il a maintenant " << papy.get_pdv() << " pdv." << endl;
+	//obs.actualiser();
+	homme.set_arme(pistolet);
+	
 
-	Aliment tiramisu("Gateau de Mamy", 1, 80);
+	shared_ptr<Arme> gun = make_shared<Arme>("Test", 3, 9);
+	gun->afficher();
 
-	papy.prendre_objet(tiramisu);
-	papy.manger(tiramisu);
+	cout << endl << "Densite : " << test.densite(0) << endl;
+	cout << "Densite : " << test.densite(1) << endl;
+	cout << "Densite : " << test.densite(2) << endl;
+	cout << "Densite : " << test.densite(3) << endl;
 
-	cout << "Papy mange un tiramisu, cela lui rend " << tiramisu.get_soin() << " pdv. Il a maintenant " << papy.get_pdv() << " pdv." << endl;
+	obs.reinit();
+	obs.actualiser();
 
-	return 0;
+
+    return 0;
 }
+

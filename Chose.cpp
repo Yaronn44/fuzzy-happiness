@@ -1,21 +1,22 @@
-/** 
- * @file Chose.cpp
- * @author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
- * @date 06/10/2016
- * @brief Chose.cpp
- *  
-**/
+//! \file Chose.cpp
+//! \author DROMIGNY--CHEVREUIL Ivan, FRETAUD Killian
+//! \date 06/10/2016
+//! \brief Fichier d'implémentation des différentes choses peuplant le monde
 
-#include <iostream>
+ // Header implémenté
 #include "Chose.hpp"
+
+ // Lib.
+#include <iostream>
+
 
 using namespace std;
 
-// ---------------------------------------------------------------------------- Constructeur / Destructeur
+//-------------------------------------------------------------------------------------------------- Constructeur / Destructeur
 
-Chose::Chose() : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0){
+Chose::Chose(int pos) : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0), x_(5), y_(5), direction_(0), posCel_(pos){
 
-	fuite_ = Etat_Fuite(this);
+    fuite_ = Etat_Fuite(this);
 	repos_ = Etat_Repos(this);
 	explore_ = Etat_Explore(this);
 	pourchasse_ = Etat_Pourchasse(this);
@@ -24,11 +25,11 @@ Chose::Chose() : pdv_(100), attaque_(1), vitesse_(1), fatigue_(0){
 
 Chose::~Chose(){}
 
-// ----------------------------------------------------------------------------------- Changement d'Etats
+//-------------------------------------------------------------------------------------------------- Changement d'Etats
 
 void Chose::changer_etat_fuite(){
 
-	etat_= fuite_;
+	etat_ = fuite_;
 }
 
 void Chose::changer_etat_repos(){
@@ -46,27 +47,31 @@ void Chose::changer_etat_pourchasse(){
 	etat_ = pourchasse_;
 }
 
-Etat_Chose Chose::get_etat(){
-	return etat_;
-}
+void Chose::fuire(){}
+
+void Chose::en_securite(){}
+
+void Chose::explore(){}
+
+void Chose::pourchasser(){}
 
 
-// ------------------------------------------------------------------------------------------------- Méthodes d'interaction
+//-------------------------------------------------------------------------------------------------- Méthodes d'interaction
 
 void Chose::recevoir_degat(int d){}
 
-void Chose::attaquer(Chose &cible){}
+void Chose::attaquer(Chose &cible) const{}
 
 void Chose::mouvement(){}
 
 void Chose::prendre_objet(Stuff obj){}
 
-void Chose::rentrer_bat(){}
+//void Chose::rentrer_bat(){}
 
 void Chose::manger(Aliment a){}
 
 
-// ------------------------------------------------------------------------------------------------- Getteur & Setteur
+//-------------------------------------------------------------------------------------------------- Getteur & Setteur
 
 int Chose::get_pdv() const{
 	return pdv_;
@@ -82,6 +87,18 @@ int Chose::get_vitesse() const{
 
 int Chose::get_fatigue() const{
 	return fatigue_;
+}
+
+Etat_Chose Chose::get_etat() const{
+	return etat_;
+}
+
+int Chose::get_dir() const{
+	return direction_;
+}
+
+int Chose::get_pos() const{
+	return posCel_;
 }
 
 
@@ -101,11 +118,21 @@ void Chose::set_fatigue(int fatigue){
 	fatigue_ = fatigue;
 }
 
+void Chose::set_direction(int d){
+	direction_ = d;
+}
 
-// ------------------------------------------------------------------------------------------------- Debug
+void Chose::set_pos(int p){
+	posCel_ = p;
+}
+
+//-------------------------------------------------------------------------------------------------- Debug
 
 void Chose::seTapperLAffiche(){
 
 	cout << "Bonjou' mon g'and maît'e !";
 	etat_.seTapperLAffiche();
 }
+
+
+

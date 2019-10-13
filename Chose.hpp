@@ -6,47 +6,66 @@
 #ifndef CHOSE_H
 #define CHOSE_H
 
-#include <QApplication>
+ // Lib.
 #include <iostream>
+#include <memory>
+ // Proj.
 #include "EtatChose.hpp"
 #include "Inventaire.hpp"
 #include "Stuff.hpp"
 
 
+// Constantes vie Humain et Zombie
 const int maxPdvH = 100;
+const int maxPdvZ = 100;
 
 //! \class Chose
 //! \brief Classe "abstraite" représentant les Choses peuplant le monde
-
 class Chose{
 
 protected:
+
     int pdv_;
     int attaque_;
     int vitesse_;
     int fatigue_;
+    int direction_;
+    int posCel_;
 
-    //! Attributs d'étât (PAttern Stats)
-    Etat_Chose fuite_;
-    Etat_Chose repos_;
-    Etat_Chose explore_;
-    Etat_Chose pourchasse_;
-    Etat_Chose etat_;
+    int x_; int y_;
+
+    //! Attributs d'étât (Pattern Stats)
+    std::shared_ptr<Etat_Chose> fuite_;
+    std::shared_ptr<Etat_Chose> repos_;
+    std::shared_ptr<Etat_Chose> explore_;
+    std::shared_ptr<Etat_Chose> pourchasse_;
+    std::shared_ptr<Etat_Chose> etat_;
 
 public:
 
     //! \brief Constructeur
-    Chose();
+    Chose(int pos);
 
     //! \brief Destructeur
     virtual ~Chose();
 
     //! Méthodes Pattern State
     void changer_etat_fuite();
+    //! Méthodes Pattern State
     void changer_etat_repos();
+    //! Méthodes Pattern State
     void changer_etat_explore();
+    //! Méthodes Pattern State
     void changer_etat_pourchasse();
-    Etat_Chose get_etat();
+
+    //! \brief Méthode de changement d'étât 
+    virtual void fuire();
+    //! \brief Méthode de changement d'étât 
+    virtual void en_securite();
+    //! \brief Méthode de changement d'étât 
+    virtual void explore();
+    //! \brief Méthode de changement d'étât 
+    virtual void pourchasser();
 
     //! Méthode débug
     void seTapperLAffiche();
@@ -59,7 +78,7 @@ public:
 
     //! \brief La chose fait perdre de la vie à une autre chose
     //! \param cible : la chose attaqué
-    virtual void attaquer(Chose &cible);
+    virtual void attaquer(Chose &cible) const;
 
     //! \brief La chose se déplace
     virtual void mouvement();
@@ -68,8 +87,6 @@ public:
     //! \param obj : l'objet ramassé
     virtual void prendre_objet(Stuff obj);
 
-    //! \brief La chose rentre dans un bâtiment
-    void rentrer_bat();
 
     //! \brief La chose mange un aliment afin de se soigner
     //! \param a : l'aliment ingéré 
@@ -77,24 +94,30 @@ public:
 
     //void afficher(int x, int y);
 
-    //! Getteur
+
+
+    // Getteur
     int get_pdv() const;
     int get_attaque() const;
     int get_vitesse() const;
     int get_fatigue() const;
+    std::shared_ptr<Etat_Chose> get_etat() const;
+    int get_dir() const;
+    int get_pos() const;
 
-    //! Setteur
+    // Setteur
     void set_pdv(int pdv);
     void set_attaque(int attaque);
     void set_vitesse(int vitesse);
     void set_fatigue(int fatigue);
 
-
-signals:
-
-public slots:
+    void set_direction(int d);
+    void set_pos(int p);
 };
 
 
 
 #endif // CHOSE_H
+
+
+
